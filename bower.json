@@ -1,0 +1,22 @@
+{
+  "name": "angular-material",
+  "description": "Testing Angular Material",
+  "main": "index.html",
+  "authors": [
+    "Milan Vesovic <vesovic1@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.6.9",
+    "angular-material": "^1.1.8"
+  }
+}
