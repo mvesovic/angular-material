@@ -1,9 +1,68 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<p>Hello World</p>
-</body>
+<html ng-app="myApp">
+	<head>
+		<title>Testing Material Design</title>
+		<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body ng-controller="MainController" layout="column">
+
+		<md-toolbar class="md-primary" md-whiteframe="4">
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleNav();" class="md-icon-button">
+					<i class="material-icons">menu</i>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<section layout="row" flex>
+			<md-sidenav md-component-id="menubar" md-whiteframe="4" layout="column" flex>
+				<md-toolbar>
+					<div class="md-toolbar-tools">
+						<p flex>Select user</p>
+						<md-button ng-click="closeNav();" class="md-icon-button" aria-label="close-dialog">
+							<i class="material-icons">close</i>
+						</md-button>
+					</div>
+				</md-toolbar>
+			</md-sidenav>
+			<md-content class="md-padding" layout="column" flex>
+
+				some content
+
+				<md-fab-speed-dial class="md-fab-bottom-right" md-direction="up" md-open="false" ng-class="selectedMode">
+					<md-fab-trigger>
+						<md-button aria-label="options" class="md-fab md-warn">
+							<md-icon md-font-set="material-icons">more_vert</md-icon>
+						</md-button>
+					</md-fab-trigger>
+					<md-fab-actions>
+						<md-button aria-label="add" class="md-fab md-raised md-mini" ng-click="createUserDilaog($event)">
+							<md-icon md-font-set="material-icons" aria-label="add">add</md-icon>
+							<md-tooltip md-direction="left">Add</md-tooltip>
+						</md-button>
+						<md-button aria-label="share" class="md-fab md-raised md-mini">
+							<md-icon md-font-set="material-icons" aria-label="share">share</md-icon>
+							<md-tooltip md-direction="left">Share</md-tooltip>
+						</md-button>
+					</md-fab-actions>
+				</md-fab-speed-dial>
+
+			</md-content>
+		</section>
+
+		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+
+		<!--Controllers -->
+		<script type="text/javascript" src="js/controllers/MainController.js"></script>
+
+		<!--Services-->
+		<script type="text/javascript" src="js/services/UserService.js"></script>
+
+	</body>
 </html>

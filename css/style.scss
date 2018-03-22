@@ -1,0 +1,9 @@
+@import 'mixins';
+
+body {
+	font-family: $font-stack;
+}
+
+md-dialog{
+	width: 800px;
+}
