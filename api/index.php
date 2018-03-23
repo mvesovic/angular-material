@@ -23,6 +23,19 @@ if (isset($_GET['path'])) {
 				$result = $users->fetchAll();
 			break;
 
+		case 'user_save':
+				$users = new Users($db);
+				$result = $users->insertUser();
+			break;
+		case 'get_user':
+				$users = new Users($db);
+				$result = $users->getUser($_GET['id']);
+			break;
+		case 'remove_user':
+			$users = new Users($db);
+			$result = $users->removeUser($_GET['id']);
+			break;
+
 		default:
 			die('Funkcija nije pronadjena');
 			break;

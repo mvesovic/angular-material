@@ -1,4 +1,4 @@
-<md-dialog aria-label="User">
+<md-dialog aria-label="User" class="create-user-dialog">
 	<md-toolbar>
 	    <div class="md-toolbar-tools">
 	        <h2>Create new user</h2>
@@ -24,6 +24,7 @@
 				 		<div ng-message="required">This is required.</div>
 				    </div>
 				</md-input-container>
+
 				<md-input-container class="md-block" flex="50">
 				    <label>Avatar</label>
 				    <input name="avatar" required ng-model="user.avatar">
@@ -33,7 +34,7 @@
 				</md-input-container>
 				<md-input-container class="md-block" flex="70">
 				    <label>About</label>
-				    <textarea name="about" ng-model="user.about" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+				    <textarea name="about" ng-model="user.about" md-maxlength="400" rows="3" md-select-on-focus></textarea>
 				</md-input-container>
 	    	</form>
 	    	<md-button ng-disabled="createUser.$invalid" class="md-button md-primary md-raised" ng-click="save()">
