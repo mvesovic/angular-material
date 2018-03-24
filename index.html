@@ -1,9 +1,113 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<p>Hello World</p>
-</body>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Testing Material Design</title>
+		<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body ng-controller="MainController" layout="column">
+
+		<md-toolbar class="md-primary" md-whiteframe="4">
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleNav();" class="md-icon-button">
+					<i class="material-icons">menu</i>
+				</md-button>
+				<h4>User Management System</h4>
+			</div>
+		</md-toolbar>
+		<section layout="row" flex>
+			<md-sidenav md-component-id="menubar" md-whiteframe="4" layout="column" flex>
+				<md-toolbar>
+					<div class="md-toolbar-tools">
+						<p flex>Select user</p>
+						<md-button ng-click="closeNav();" class="md-icon-button" aria-label="close-dialog">
+							<i class="material-icons">close</i>
+						</md-button>
+					</div>
+				</md-toolbar>
+				<md-content>
+					<md-list flex>
+						<md-list-item ng-repeat="user in users" ng-click="selectUser(user.id)">
+							<img ng-src="assets/{{user.avatar}}" class="md-avatar">
+							<div class="md-list-item-text"><p>{{user.name}}</p></div>
+						</md-list-item>
+					</md-list>
+				</md-content>
+			</md-sidenav>
+			<md-content style="background: #F1F1F1" class="md-padding" layout="column" flex>
+
+				<div layout="row" ng-if="selected">
+					<div layout="column" flex="20">
+						<md-card layout-padding>
+							<img width="355" height="355" ng-src="assets/{{selected.avatar}}">
+						</md-card>
+					</div>
+					<div layout="column" flex="40">
+						<md-card layout-padding flex>
+							<div layout="row">
+								<div layout="column" flex="15">Name:</div>
+								<div layout="column" flex>{{selected.name}}</div>
+							</div>
+							<div layout="row">
+								<div layout="column" flex="15">Address:</div>
+								<div layout="column" flex>{{selected.address}}</div>
+							</div>
+							<div layout="row">
+								<div layout="column" flex="15">About:</div>
+								<div layout="column" flex>{{selected.about}}</div>
+							</div>
+						</md-card>
+					</div>
+				</div>
+
+				<div layout="row" ng-if="!selected" layout-align="center center" flex>
+					<img src="assets/folder.svg" class="adduser" ng-click="createUserDilaog($event)">
+				</div>
+
+				<md-fab-speed-dial class="md-fab-top-right" md-direction="down" md-open="false" ng-class="selectedMode">
+					<md-fab-trigger>
+						<md-button aria-label="options" class="md-fab md-warn">
+							<md-icon md-font-set="material-icons">more_vert</md-icon>
+						</md-button>
+					</md-fab-trigger>
+					<md-fab-actions>
+						<md-button aria-label="add" class="md-fab md-raised md-mini" ng-click="createUserDilaog($event)">
+							<md-icon md-font-set="material-icons" aria-label="add">add</md-icon>
+							<md-tooltip md-direction="left">Add</md-tooltip>
+						</md-button>
+						<md-button ng-if="selected" aria-label="edit" class="md-fab md-raised md-mini" ng-click="createUserDilaog($event)">
+							<md-icon md-font-set="material-icons" aria-label="edit">edit</md-icon>
+							<md-tooltip md-direction="left">Edit</md-tooltip>
+						</md-button>
+						<md-button ng-if="selected" aria-label="remove" class="md-fab md-raised md-mini" ng-click="deleteUserDilaog(selected.id)">
+							<md-icon md-font-set="material-icons" aria-label="remove">delete</md-icon>
+							<md-tooltip md-direction="left">Delete</md-tooltip>
+						</md-button>
+						<md-button ng-if="selected" aria-label="share" class="md-fab md-raised md-mini">
+							<md-icon md-font-set="material-icons" aria-label="share">share</md-icon>
+							<md-tooltip md-direction="left">Share</md-tooltip>
+						</md-button>
+					</md-fab-actions>
+				</md-fab-speed-dial>
+
+			</md-content>
+		</section>
+
+		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+
+		<!--Controllers -->
+		<script type="text/javascript" src="js/controllers/MainController.js"></script>
+
+		<!--Services-->
+		<script type="text/javascript" src="js/services/UserService.js"></script>
+		<script type="text/javascript" src="js/services/NotifyService.js"></script>
+
+	</body>
 </html>

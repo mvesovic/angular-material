@@ -1,0 +1,48 @@
+<md-dialog aria-label="User" class="create-user-dialog">
+	<md-toolbar>
+	    <div class="md-toolbar-tools">
+	        <h2>Create new user</h2>
+	        <span flex></span>
+	        <md-button class="md-icon-button" ng-click="cancel()">
+	          <md-icon md-font-set aria-label="Close dialog">close</md-icon>
+	        </md-button>
+	      </div>
+	    </md-toolbar>
+	    <md-dialog-content class="md-padding">
+	    	<form name="createUser">
+				<md-input-container class="md-block md-dialog-focus-trap" flex="50">
+				    <label>Name</label>
+				    <input name="name" required ng-model="user.name">
+				    <div ng-messages="createUser.name.$error">
+						<div ng-message="required">This is required.</div>
+				    </div>
+				</md-input-container>
+				<md-input-container class="md-block" flex="50">
+				    <label>Address</label>
+				    <input name="address" required ng-model="user.address">
+				    <div ng-messages="createUser.address.$error">
+				 		<div ng-message="required">This is required.</div>
+				    </div>
+				</md-input-container>
+
+				<md-input-container class="md-block" flex="50">
+				    <label>Avatar</label>
+				    <input name="avatar" required ng-model="user.avatar">
+				    <div ng-messages="createUser.avatar.$error">
+				    	<div ng-message="required">This is required.</div>
+				    </div>
+				</md-input-container>
+				<md-input-container class="md-block" flex="70">
+				    <label>About</label>
+				    <textarea name="about" ng-model="user.about" md-maxlength="400" rows="3" md-select-on-focus></textarea>
+				</md-input-container>
+	    	</form>
+	    	<md-button ng-disabled="createUser.$invalid" class="md-button md-primary md-raised" ng-click="save()">
+	    	    Save
+	    	</md-button>
+	    	<md-button class="md-button md-primary md-cancel-button" ng-click="cancel()">
+	    	    Cancel
+	    	</md-button>
+	    </md-dialog-content>
+
+</md-dialog>
