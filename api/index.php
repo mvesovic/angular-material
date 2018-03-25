@@ -35,6 +35,10 @@ if (isset($_GET['path'])) {
 			$users = new Users($db);
 			$result = $users->removeUser($_GET['id']);
 			break;
+		case 'edit_user':
+			$users = new Users($db);
+			$result = $users->editUser();
+			break;
 
 		default:
 			die('Funkcija nije pronadjena');

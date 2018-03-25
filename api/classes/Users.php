@@ -60,5 +60,19 @@
 				return json_encode($this->response);
 			}
 		}
+
+		public function editUser(){
+
+			$data = (array)(json_decode(file_get_contents("php://input")));
+
+			$this->db->where('id', $data['id']);
+			if($this->db->update('users', $data)){
+				$this->response['success'] = ['User successfuly updated.'];
+				return json_encode($this->response);
+			} else {
+				$this->response['error'] = ['Error! Please try again.'];
+				return json_encode($this->response);
+			}
+		}
 	}
 ?>

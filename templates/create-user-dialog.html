@@ -1,7 +1,8 @@
 <md-dialog aria-label="User" class="create-user-dialog">
 	<md-toolbar>
 	    <div class="md-toolbar-tools">
-	        <h2>Create new user</h2>
+	        <h2 ng-if="!userEdit">Create new user</h2>
+	        <h2 ng-if="userEdit">Edit user</h2>
 	        <span flex></span>
 	        <md-button class="md-icon-button" ng-click="cancel()">
 	          <md-icon md-font-set aria-label="Close dialog">close</md-icon>
@@ -18,7 +19,7 @@
 	    					<div ng-message="required">This is required.</div>
 	    			    </div>
 	    			</md-input-container>
-	    			<md-input-container class="md-block" layout="column" flex>
+	    			<md-input-container ng-if="!user.id" class="md-block" layout="column" flex>
 	    				<label>Enter birthday</label>
 	    				<md-datepicker md-open-on-focus md-hide-icons="triangle" required ng-model="user.birthday" name="dateField"></md-datepicker>
 	    				<div ng-messages="createUser.dateField.$error">
@@ -46,7 +47,10 @@
 				    <textarea name="about" ng-model="user.about" md-maxlength="400" rows="3" md-select-on-focus></textarea>
 				</md-input-container>
 	    	</form>
-	    	<md-button ng-disabled="createUser.$invalid" class="md-button md-primary md-raised" ng-click="save()">
+	    	<md-button ng-if="!user.id" ng-disabled="createUser.$invalid" class="md-button md-primary md-raised" ng-click="save()">
+	    	    Save
+	    	</md-button>
+	    	<md-button ng-if="user.id" ng-disabled="createUser.$invalid" class="md-button md-primary md-raised" ng-click="save(user)">
 	    	    Save
 	    	</md-button>
 	    	<md-button class="md-button md-primary md-cancel-button" ng-click="cancel()">

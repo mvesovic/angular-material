@@ -37,6 +37,42 @@ app.controller('MainController', ($scope, _users, _notify, $mdSidenav, $mdDialog
 	    });
 	  };
 
+	  $scope.editUserDilaog = (user) => {
+	      $mdDialog.show({
+	        controller: ($scope) => {
+
+	        	$scope.user = user;
+	        	$scope.userEdit = true;
+
+	        	$scope.save = (user) => {
+	        		_users.editUser(user).then(response => {
+	        			let msg = response.data;
+
+	        			if (msg.error.length === 0) {
+	        				_notify.success(msg.success[0]);
+	        				$mdDialog.cancel();
+	        				refresh();
+	        			} else {
+	        				_notify.error(msg.error[0]);
+	        			}
+	        		}, err => {
+	        			console.log(err);
+	        		});
+	        	};
+
+	        	$scope.cancel = () => {
+	        		$mdDialog.cancel();
+	        	};
+
+	        },
+	        templateUrl: 'templates/create-user-dialog.html',
+	        parent: angular.element(document.body),
+	        targetEvent: user,
+	        clickOutsideToClose:true,
+	        fullscreen: false
+	      });
+	    };
+
 	$scope.toggleNav = () => {
 		$mdSidenav('menubar').toggle();
 	};
