@@ -36,5 +36,13 @@ app.factory('_users', ($http) => {
 		});
 	};
 
+	service.editUser = (data) => {
+		return $http({
+			method: 'POST',
+			url: 'api/edit_user',
+			data: data
+		});
+	};
+
 	return service;
 });
