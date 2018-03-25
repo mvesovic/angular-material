@@ -51,6 +51,10 @@
 								<div layout="column" flex>{{selected.name}}</div>
 							</div>
 							<div layout="row">
+								<div layout="column" flex="15">Birthday:</div>
+								<div layout="column" flex>{{selected.birthday * 1000| date: 'dd MMM, y'}}</div>
+							</div>
+							<div layout="row">
 								<div layout="column" flex="15">Address:</div>
 								<div layout="column" flex>{{selected.address}}</div>
 							</div>
@@ -100,6 +104,9 @@
 		<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+		<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+		<script type="text/javascript" src="bower_components/angular-moment/angular-moment.min.js"></script>
+
 		<script type="text/javascript" src="js/app.js"></script>
 
 		<!--Controllers -->

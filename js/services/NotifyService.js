@@ -1,7 +1,7 @@
-app.factory('_notify', function($mdToast){
+app.factory('_notify', ($mdToast) => {
 	let service = {};
 
-	service.success = function(msg){
+	service.success = (msg) => {
 		$mdToast.show(
 			$mdToast.simple()
 		    .content(msg)
@@ -11,7 +11,7 @@ app.factory('_notify', function($mdToast){
 		);
 	};
 
-	service.error = function(msg){
+	service.error = (msg) => {
 		$mdToast.show(
 			$mdToast.simple()
 		    .content(msg)
