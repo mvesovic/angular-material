@@ -1,14 +1,14 @@
-app.factory('_users', function($http){
+app.factory('_users', ($http) => {
 	let service = {};
 
-	service.fetchAll = function(){
+	service.fetchAll = () => {
 		return $http({
 			method: 'GET',
 			url: 'api/users_list'
 		});
 	};
 
-	service.save = function(data){
+	service.save = (data) => {
 		return $http({
 			method: 'POST',
 			url: 'api/user_save',
@@ -16,7 +16,7 @@ app.factory('_users', function($http){
 		});
 	};
 
-	service.getUser = function(id){
+	service.getUser = (id) => {
 		return $http({
 			method: 'GET',
 			url: 'api/get_user',
@@ -26,7 +26,7 @@ app.factory('_users', function($http){
 		});
 	};
 
-	service.removeUser = function(id){
+	service.removeUser = (id) => {
 		return $http({
 			method: 'DELETE',
 			url: 'api/remove_user',

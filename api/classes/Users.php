@@ -19,6 +19,9 @@
 		public function insertUser(){
 
 			$data = (array)(json_decode(file_get_contents("php://input")));
+
+			$data['birthday'] = strtotime($data['birthday']);
+
 			$id = $this->db->insert('users', $data);
 
 			if (!empty($id)) {
@@ -35,6 +38,8 @@
 
 			$this->db->where('id', $id);
 			$user = $this->db->getOne('users');
+
+			$user['birthday'] = date($user['birthday']);
 
 			if(!empty($user)){
 				$this->response['success'] = [$user];

@@ -1,18 +1,18 @@
-app.controller('MainController', function($scope, _users, _notify, $mdSidenav, $mdDialog){
+app.controller('MainController', ($scope, _users, _notify, $mdSidenav, $mdDialog, $filter) => {
 
 	$scope.selectedMode = 'md-scale';
 
-	$scope.createUserDilaog = function(ev) {
+	$scope.createUserDilaog = (ev) => {
 	    $mdDialog.show({
-	      controller: function($scope){
+	      controller: ($scope) => {
 
 	      	$scope.user = {};
 
-	      	$scope.cancel = function(){
+	      	$scope.cancel = () => {
 	      		$mdDialog.cancel();
 	      	};
 
-	      	$scope.save = function(){
+	      	$scope.save = () => {
 	      		_users.save($scope.user).then(response=>{
 	      			let msg = response.data;
 
@@ -33,24 +33,19 @@ app.controller('MainController', function($scope, _users, _notify, $mdSidenav, $
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
 	      clickOutsideToClose:true,
-	      fullscreen: false // Only for -xs, -sm breakpoints.
-	    })
-	    .then(function(answer) {
-	      $scope.status = 'You said the information was "' + answer + '".';
-	    }, function() {
-	      $scope.status = 'You cancelled the dialog.';
+	      fullscreen: false
 	    });
 	  };
 
-	$scope.toggleNav = function(){
+	$scope.toggleNav = () => {
 		$mdSidenav('menubar').toggle();
 	};
 
-	$scope.closeNav = function(){
+	$scope.closeNav = () => {
 		$mdSidenav('menubar').close();
 	};
 
-	$scope.selectUser = function(id){
+	$scope.selectUser = (id) => {
 		_users.getUser(id).then(response=>{
 			$scope.selected = response.data.success[0];
 			$mdSidenav('menubar').close();
@@ -59,7 +54,7 @@ app.controller('MainController', function($scope, _users, _notify, $mdSidenav, $
 		});
 	};
 
-	$scope.deleteUserDilaog = function(id) {
+	$scope.deleteUserDilaog = (id) => {
 		var confirm = $mdDialog.confirm()
 		.title('Delete')
 		.textContent('Would you like to delete user?')
@@ -84,7 +79,7 @@ app.controller('MainController', function($scope, _users, _notify, $mdSidenav, $
 		},cls=>{});
 	};
 
-	function refresh(){
+	refresh = () => {
 		_users.fetchAll().then(response=>{
 			$scope.users = response.data;
 		}, err=>{

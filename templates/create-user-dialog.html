@@ -10,13 +10,23 @@
 	    </md-toolbar>
 	    <md-dialog-content class="md-padding">
 	    	<form name="createUser">
-				<md-input-container class="md-block md-dialog-focus-trap" flex="50">
-				    <label>Name</label>
-				    <input name="name" required ng-model="user.name">
-				    <div ng-messages="createUser.name.$error">
-						<div ng-message="required">This is required.</div>
-				    </div>
-				</md-input-container>
+	    		<div layout="row">
+	    			<md-input-container class="md-block md-dialog-focus-trap" flex="50" layout="column">
+	    			    <label>Name</label>
+	    			    <input name="name" required ng-model="user.name">
+	    			    <div ng-messages="createUser.name.$error">
+	    					<div ng-message="required">This is required.</div>
+	    			    </div>
+	    			</md-input-container>
+	    			<md-input-container class="md-block" layout="column" flex>
+	    				<label>Enter birthday</label>
+	    				<md-datepicker md-open-on-focus md-hide-icons="triangle" required ng-model="user.birthday" name="dateField"></md-datepicker>
+	    				<div ng-messages="createUser.dateField.$error">
+	    					<div ng-message="required">This is required.</div>
+	    				</div>
+	    			</md-input-container>
+	    		</div>
+
 				<md-input-container class="md-block" flex="50">
 				    <label>Address</label>
 				    <input name="address" required ng-model="user.address">
@@ -24,7 +34,6 @@
 				 		<div ng-message="required">This is required.</div>
 				    </div>
 				</md-input-container>
-
 				<md-input-container class="md-block" flex="50">
 				    <label>Avatar</label>
 				    <input name="avatar" required ng-model="user.avatar">
